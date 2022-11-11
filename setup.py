@@ -1,4 +1,8 @@
-from distutils.core import setup
+# ah the irony, we need to use library itself to use old setuptools
+import fixcollections
+fixcollections.monkeypatch()
+
+from setuptools import setup
 
 setup(name='fixcollections',
       version='1.0.0',
