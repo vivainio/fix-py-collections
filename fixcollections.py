@@ -5,12 +5,16 @@ It restores compatibility shims removed by https://github.com/python/cpython/iss
 License: MIT
 
 """
-try:
-    # Python < 3.10
-    from collections import MutableMapping
-except:
-    # Python >= 3.10
-    import collections.abc
-    import collections
-    collections.MutableMapping = collections.abc.MutableMapping
-    collections.Iterable = collections.abc.Iterable
+
+def monkeypatch():
+    """ Run this to monkepatch the collections.abc compatibility stubs back to collections module """
+
+    try:
+        # Python < 3.10, nothing to do
+        from collections import MutableMapping
+    except:
+        # Python >= 3.10
+        import collections.abc
+        import collections
+        collections.MutableMapping = collections.abc.MutableMapping
+        collections.Iterable = collections.abc.Iterable
